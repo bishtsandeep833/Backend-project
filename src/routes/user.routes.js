@@ -4,6 +4,15 @@ import { registerUser } from '../controllers/user.controller.js';
 const router = Router();
 
 
-router.route("/register").post(registerUser)
+router.route("/register").post(
+  upload.fileds([
+    {name: "avatar",
+      maxCount: 1
+    },
+    {name: "coverImage",
+      maxCount: 1
+    }
+  ]),
+  registerUser)
 
 export default router;
