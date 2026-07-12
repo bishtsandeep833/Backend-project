@@ -1,6 +1,7 @@
 import express, { urlencoded } from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser'; 
+import userRouter from './routes/user.routes.js';
 
 const app = express();
 
@@ -12,10 +13,11 @@ app.use(express.static("public"));
 app.use(cookieParser());
 
 // routes import
-import userRouter from './routes/user.routes.js';
 
-
+app.get("/", (req, res) => {
+  res.send("Server Working");
+});
 // routes declaration
-app.use("api/v1/user", userRouter)
+app.use("/api/v1/users", userRouter)
 
 export {app}
